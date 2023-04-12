@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- displays site properly based on user's device -->
+
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="./assets/images/favicon-32x32.png"
+		/>
+		<title>Frontend Mentor | Age calculator app</title>
+		<link rel="stylesheet" href="./style/style.css" />
+    <script src="./script/script.js" defer></script>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="container">
+				<div class="inputs">
+					<label for="day" class="redDay">Day</label>
+					<label for="month" class="redMonth">Month</label>
+					<label for="year" class="redYear">Year</label>
+					<input
+						type="number"
+						name="day"
+						id="day"
+						class="dateInputs"
+						placeholder="DD"
+					/>
+					<input
+          type="number"
+          name="month"
+          id="month"
+          class="dateInputs"
+          placeholder="MM"
+					/>
+					<input
+          type="number"
+          name="year"
+          id="year"
+          class="dateInputs"
+          placeholder="YYYY"
+					/>
+          <div class="err1"></div>
+          <div class="err2"></div>
+          <div class="err3"></div>
+				</div>
+				<div class="btn_container">
+					<div class="line"></div>
+					<button class="arrow">
+						<img
+							src="./assets/images/icon-arrow.svg"
+							alt="white arrow on purple background"
+						/>
+					</button>
+				</div>
+				<div class="value_container">
+					<h1 class="value_text">
+						<span class="yearValue valuePurple">--</span> years
+					</h1>
+					<h1 class="value_text">
+						<span class="monthValue valuePurple">-</span> months
+					</h1>
+					<h1 class="value_text">
+						<span class="daysValue valuePurple">--</span> days
+					</h1>
+				</div>
+			</div>
+
+			<div class="attribution">
+				Challenge by
+				<a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+					>Frontend Mentor</a
+				>. Coded by
+				<a href="https://github.com/pawelstasiewicz">pawelstasiewicz</a>.
+			</div>
+		</div>
+	</body>
+</html>

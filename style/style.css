@@ -1,0 +1,160 @@
+@import url('https://fonts.google.com/specimen/Poppins');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	height: auto;
+	font-family: 'Poppins', sans-serif;
+	background-color: hsl(0, 0%, 94%);
+}
+
+.wrapper {
+	width: 100%;
+	height: 100vh;
+}
+
+.container {
+	background-color: hsl(0, 0%, 100%);
+	padding: 0 20px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 350px;
+	height: auto;
+	border-radius: 20px 20px 100px 20px;
+	padding: 20px;
+}
+
+.inputs {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 7px;
+	padding: 30px 20px;
+}
+
+label {
+	text-transform: uppercase;
+	font-size: 12px;
+	font-weight: bold;
+	color: hsl(0, 1%, 44%);
+	letter-spacing: 2px;
+}
+
+.dateInputs {
+	padding: 10px;
+	border: 1px solid hsl(0, 0%, 86%);
+	border-radius: 5px;
+	width: 80px;
+	margin: 0 auto;
+	font-weight: 800;
+}
+
+.btn_container {
+	text-align: center;
+}
+
+.line {
+	z-index: 2;
+	position: relative;
+	top: 30px;
+	border-bottom: 1px solid hsl(0, 0%, 86%);
+}
+
+.arrow {
+	z-index: 5;
+	position: relative;
+	padding: 15px;
+	border-radius: 50px;
+	border: none;
+	background-color: hsl(259, 100%, 65%);
+	cursor: pointer;
+	transition: 0.5s;
+}
+
+.arrow img {
+	width: 30px;
+}
+
+.value_container {
+	font-size: 32px;
+}
+
+.value_text {
+	font-weight: bold;
+	font-style: italic;
+}
+
+.valuePurple {
+	font-weight: bolder;
+	color: hsl(259, 100%, 65%);
+}
+
+.attribution {
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	transform: translate(-50%, -50%);
+	width: 100vw;
+	font-size: 11px;
+	text-align: center;
+}
+.attribution a {
+	color: hsl(228, 45%, 44%);
+}
+
+/* media */
+
+@media (min-width: 1440px) {
+	.container {
+		width: 500px;
+	}
+
+	.dateInputs {
+		margin-left: -5px;
+		width: 100px;
+	}
+
+	.dateInputs:last-child {
+		margin-right: 120px;
+	}
+
+	.btn_container {
+		display: flex;
+		justify-content: center;
+	}
+
+	.line {
+		position: relative;
+		top: -30px;
+		width: 350px;
+	}
+
+	.value_container {
+		margin: 0 20px;
+	}
+}
+
+/* JS */
+
+.active {
+	background-color: hsl(0, 0%, 8%);
+}
+
+.dayErr {
+	border: 1px solid hsl(0, 100%, 67%);
+}
+
+.redColor {
+	color: red;
+}
+
+.errInfoColor {
+	margin-left: -5px;
+	font-size: 14px;
+	color: red;
+}
