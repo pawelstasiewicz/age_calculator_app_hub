@@ -43,6 +43,7 @@ label {
 	font-weight: bold;
 	color: hsl(0, 1%, 44%);
 	letter-spacing: 2px;
+	padding-left: 15px;
 }
 
 .dateInputs {
@@ -112,6 +113,10 @@ label {
 @media (min-width: 1440px) {
 	.container {
 		width: 500px;
+	}
+
+	label {
+		padding-left: 0;
 	}
 
 	.dateInputs {
