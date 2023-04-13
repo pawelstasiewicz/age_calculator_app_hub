@@ -31,12 +31,12 @@ Users should be able to:
 
 ### Screenshot
 
-<img width="671" alt="Zrzut ekranu 2023-04-13 o 17 43 55" src="https://user-images.githubusercontent.com/100447618/231813867-8130332e-d3af-4dcf-8d13-f0d35a3b27e6.png">
+<img width="1124" alt="Zrzut ekranu 2023-04-13 o 18 21 02" src="https://user-images.githubusercontent.com/100447618/231823877-0385c842-74df-48f5-a86d-db33e5374ee6.png">
 <img width="1680" alt="Zrzut ekranu 2023-04-13 o 16 32 14" src="https://user-images.githubusercontent.com/100447618/231793247-02ba9fc2-d3c3-4bf3-af28-0a72150bab7f.png">
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://dulcet-rolypoly-f07261.netlify.app)
+- Solution URL: [Add solution URL here](https://glittering-gnome-c0ab60.netlify.app)
 
 
 ## My process
