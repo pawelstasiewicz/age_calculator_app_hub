@@ -3,147 +3,72 @@ const month = document.querySelector('#month');
 const year = document.querySelector('#year');
 const btnArrow = document.querySelector('.arrow');
 
-//All Values
-
 const yearValue = document.querySelector('.yearValue');
 const monthValue = document.querySelector('.monthValue');
 const daysValue = document.querySelector('.daysValue');
 
-//Date
-
-const date = new Date();
-
-//Errorrs information
-
-const errInfo1 = document.createElement('p');
-const err1 = document.querySelector('.err1');
-const errInfo2 = document.createElement('p');
-const err2 = document.querySelector('.err2');
-const errInfo3 = document.createElement('p');
-const err3 = document.querySelector('.err3');
-
 const main = () => {
-	DOMEvents();
+    btnArrow.addEventListener('click', handleSubmit);
 };
 
-const DOMEvents = () => {
-	btnArrow.addEventListener('click', pressBtn);
-	btnArrow.addEventListener('mouseover', colorBtnStart);
-	btnArrow.addEventListener('mouseout', colorBtnEnd);
+const handleSubmit = (event) => {
+    event.preventDefault(); 
+
+    const inputDay = parseInt(day.value);
+    const inputMonth = parseInt(month.value) - 1; 
+    const inputYear = parseInt(year.value);
+
+    const currentDate = new Date();
+    const birthDate = new Date(inputYear, inputMonth, inputDay);
+
+    if (isNaN(inputDay) || isNaN(inputMonth) || isNaN(inputYear)) {
+        displayError('All fields are required');
+        return;
+    }
+
+    if (birthDate.getDate() !== inputDay ||
+        birthDate.getMonth() !== inputMonth ||
+        birthDate.getFullYear() !== inputYear) {
+        displayError('Invalid date');
+        return;
+    }
+
+    if (birthDate > currentDate) {
+        displayError('Birth date cannot be in the future');
+        return;
+    }
+    const age = calculateAge(birthDate, currentDate);
+    displayAge(age);
 };
 
-const pressBtn = () => {
-	const redD = document.querySelector('.redDay');
-	const redM = document.querySelector('.redMonth');
-	const redY = document.querySelector('.redYear');
+const calculateAge = (birthDate, currentDate) => {
+    let ageYears = currentDate.getFullYear() - birthDate.getFullYear();
+    let ageMonths = currentDate.getMonth() - birthDate.getMonth();
+    let ageDays = currentDate.getDate() - birthDate.getDate();
 
-	if (day.value === '' || month.value === '' || year.value === '') {
-		errInfo1.textContent = 'This field is required';
-		errInfo2.textContent = 'This field is required';
-		errInfo3.textContent = 'This field is required';
-		redD.classList.add('redColor');
-		redM.classList.add('redColor');
-		redY.classList.add('redColor');
-		day.classList.add('dayErr');
-		month.classList.add('dayErr');
-		year.classList.add('dayErr');
-		errInfo1.classList.add('errInfoColor');
-		errInfo2.classList.add('errInfoColor');
-		errInfo3.classList.add('errInfoColor');
-		err1.append(errInfo1);
-		err2.append(errInfo2);
-		err3.append(errInfo3);
-	} else if (day.value > 31 || day.value <= 0) {
-		errInfo2.textContent = '';
-		errInfo3.textContent = '';
-		redD.classList.add('redColor');
-		redM.classList.add('redColor');
-		redY.classList.add('redColor');
-		day.classList.add('dayErr');
-		month.classList.add('dayErr');
-		year.classList.add('dayErr');
-		errInfo1.textContent = 'This field is required';
-		errInfo1.classList.add('errInfoColor');
-		err1.append(errInfo1);
-	} else if (month.value > 12 || month.value <= 0) {
-		errInfo1.textContent = '';
-		errInfo3.textContent = '';
-		redD.classList.add('redColor');
-		redM.classList.add('redColor');
-		redY.classList.add('redColor');
-		day.classList.add('dayErr');
-		month.classList.add('dayErr');
-		year.classList.add('dayErr');
-		errInfo2.textContent = 'This field is required';
-		errInfo2.classList.add('errInfoColor');
-		err2.append(errInfo2);
-	} else if (year.value > date.getFullYear() || year.value <= 0) {
-		errInfo1.textContent = '';
-		errInfo2.textContent = '';
-		redD.classList.add('redColor');
-		redM.classList.add('redColor');
-		redY.classList.add('redColor');
-		day.classList.add('dayErr');
-		month.classList.add('dayErr');
-		year.classList.add('dayErr');
-		errInfo3.textContent = 'This field is required';
-		errInfo3.classList.add('errInfoColor');
-		err3.append(errInfo3);
-	} else if (
-		(day.value > 28 && month.value === '2') ||
-		(day.value > 28 && month.value === '4') ||
-		(day.value > 30 && month.value === '6') ||
-		(day.value > 30 && month.value === '9') ||
-		(day.value > 30 && month.value === '11')
-	) {
-		redD.classList.add('redColor');
-		redM.classList.add('redColor');
-		redY.classList.add('redColor');
-		day.classList.add('dayErr');
-		month.classList.add('dayErr');
-		year.classList.add('dayErr');
-		errInfo1.textContent = 'This field is required';
-		errInfo1.classList.add('errInfoColor');
-		err1.append(errInfo1);
-		errInfo2.textContent = 'This field is required';
-		errInfo2.classList.add('errInfoColor');
-		err2.append(errInfo2);
-	} else if (
-		day.value <= 31 &&
-		month.value <= 12 &&
-		year.value <= date.getFullYear()
-	) {
-		redD.classList.remove('redColor');
-		redM.classList.remove('redColor');
-		redY.classList.remove('redColor');
-		day.classList.remove('dayErr');
-		month.classList.remove('dayErr');
-		year.classList.remove('dayErr');
-		errInfo1.textContent = '';
-		errInfo2.textContent = '';
-		errInfo3.textContent = '';
+    if (currentDate.getMonth() < birthDate.getMonth() ||
+        (currentDate.getMonth() === birthDate.getMonth() && currentDate.getDate() < birthDate.getDate())) {
+        ageYears--;
+        ageMonths += 12; 
+    }
 
-		const newDay = new Date(date.getTime() - day.value * 24 * 60 * 60 * 1000);
-		daysValue.textContent = newDay.getDate();
+    if (ageDays < 0) {
+        const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0).getDate();
+        ageDays += lastDayOfMonth;
+        ageMonths--;
+    }
 
-		const newMonth = new Date(date);
-		newMonth.setMonth(date.getMonth() - month.value);
-		monthValue.textContent = newMonth.getMonth();
-
-		const newYear = new Date(date);
-		newYear.setFullYear(date.getFullYear() - year.value);
-		yearValue.textContent = newYear.getFullYear() - 1;
-	}
-
-	btnArrow.classList.remove('active');
+    return { years: ageYears, months: ageMonths, days: ageDays };
 };
 
-const colorBtnStart = () => {
-	btnArrow.classList.add('active');
+const displayAge = (age) => {
+    yearValue.textContent = age.years;
+    monthValue.textContent = age.months;
+    daysValue.textContent = age.days;
 };
 
-const colorBtnEnd = () => {
-	btnArrow.classList.remove('active');
+const displayError = (message) => {
+    console.error('Validation error:', message);
 };
 
 document.addEventListener('DOMContentLoaded', main);
